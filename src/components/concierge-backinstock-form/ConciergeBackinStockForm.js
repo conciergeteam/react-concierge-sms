@@ -1,39 +1,37 @@
 import React, {useState} from 'react'
-import PhoneInput from "react-phone-input-labelled";
 import axios from 'axios'
+import PhoneInput from "react-phone-input-labelled";
 import {
   PHONE_COUNTRIES,
-  SMS_OPT_IN_URLS,
+  BIS_FORM_DEFAULT_CONFIG,
   PHONE_DEFAULT_PLACEHOLDER,
-  SMS_OPT_IN_DEFAULT_CONFIG,
-  PHONE_NUMBER_LENGTH
+  PHONE_NUMBER_LENGTH,
+  BIS_URLS
 } from "../../CONSTANTS";
 
-function ConciergeSmsOptIn({options, configuration}) {
+function ConciergeBackinStockForm({options, configuration}) {
   const [value, setValue] = useState('')
-  const [isValid, setValid] = useState(false)
+  const [isValid, setIsValid] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const CONFIG = Object.assign(SMS_OPT_IN_DEFAULT_CONFIG, {...configuration})
-  let url = options.mode ? SMS_OPT_IN_URLS[options.mode] : SMS_OPT_IN_URLS['prod']
+  const [acceptMarketing, setAcceptMarketing] = useState(false)
+  const CONFIG = Object.assign(BIS_FORM_DEFAULT_CONFIG, {...configuration})
+  let url = options.mode ? BIS_URLS[options.mode] : BIS_URLS['prod']
 
-  const submitForm = (element) => {
+  const submitForm = (e) => {
     if (!isValid) {
       return false
     }
-    element.preventDefault()
+    e.preventDefault()
     options.phone_number = value;
+    options.accepts_sms_marketing = acceptMarketing
     axios.post(url, options).then(() => {
       setSubmitted(true)
       onSuccess()
     }).catch((error) => {
-        console.error(error)
-        onError()
-      }
+       console.error(error)
+       onError()
+     }
     )
-  }
-
-  const replaceTag = (text) => {
-    return text.replace("{{org_name}}", CONFIG.orgName)
   }
 
   const onSuccess = () => {
@@ -45,13 +43,32 @@ function ConciergeSmsOptIn({options, configuration}) {
   }
 
   const onPhoneChange = (phoneNumberValue) => {
-    setValid(isPhoneValid(phoneNumberValue))
+    setIsValid(isPhoneValid(phoneNumberValue))
     setValue(phoneNumberValue)
   }
 
   const isPhoneValid = (phoneNumber) => {
     let matchNumbers = phoneNumber.match(/\d/g);
     return matchNumbers && matchNumbers.length === PHONE_NUMBER_LENGTH
+  }
+
+  const onAcceptMarketingChange = () => {
+    setAcceptMarketing((v) => !v)
+  }
+
+  const replaceTag = (text) => {
+    return text.replace("{{org_name}}", CONFIG.orgName)
+  }
+
+  const smsInsiders = () => {
+    return (
+      <div>
+        <input type="checkbox" value={acceptMarketing} name="accept_sms_marketing" onClick={onAcceptMarketingChange}/>
+        <label style={CONFIG.smsInsidersLabelStyle}>{replaceTag(CONFIG.smsInsidersLabel)}</label>
+        <p className="concierge-sms-insiders-text" style={CONFIG.smsInsidersStyle}> {replaceTag(CONFIG.smsInsidersText)} </p>
+        <p style={CONFIG.smsLegalNoticeStyle}>{CONFIG.smsLegalNotice}</p>
+      </div>
+    )
   }
 
   const submitButton = () => {
@@ -65,7 +82,7 @@ function ConciergeSmsOptIn({options, configuration}) {
 
   return (
     <div className="concierge-form-container" style={CONFIG.formContainerStyle}>
-      <form id="concierge-sms-opt-in-form">
+      <form id="concierge-bis-form">
         <p className="concierge-header" style={CONFIG.headerStyle}>{CONFIG.header}</p>
         <p className="concierge-subheader" style={CONFIG.subheaderStyle}>{CONFIG.subheader}</p>
         <PhoneInput
@@ -85,10 +102,10 @@ function ConciergeSmsOptIn({options, configuration}) {
           onlyCountries={PHONE_COUNTRIES}
         />
         {submitButton()}
-        <p style={CONFIG.smsLegalNoticeStyle}>{replaceTag(CONFIG.smsLegalNotice)}</p>
+        {CONFIG.smsInsiders && smsInsiders()}
       </form>
     </div>
   )
 }
 
-export default ConciergeSmsOptIn
+export default ConciergeBackinStockForm

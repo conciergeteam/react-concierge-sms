@@ -1,24 +1,20 @@
 {
   "name": "react-concierge-sms",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "source": "src/package-main.js",
+  "source": "src/index.js",
   "dependencies": {
-    "axios": "0.21.1",
-    "react-phone-input-labelled": "^1.0.1"
+    "axios": "> 0.2",
+    "react-phone-input-labelled": "1.0.x"
   },
   "peerDependencies": {
-    "react": "^16.1",
-    "react-dom": "^16.1"
+    "react": ">= 16.1",
+    "react-dom": ">= 16.1"
   },
   "scripts": {
-    "start": "react-scripts start -p 3001",
-    "test": "react-scripts test",
-    "builde": "rm -rf dist && mkdir dist &&  babel src/components -d dist --copy-files",
-    "build": "rollup --config",
-    "eject": "react-scripts eject"
+    "build": "cp -R playground-app/src/components/ src/components; rollup --config"
   },
   "babel": {
     "presets": [
