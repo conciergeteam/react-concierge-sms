@@ -1,23 +1,56 @@
-# react-concierge-scripts
+# react-concierge-sms
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React ready components for the great concierge SMS tools.
 
-## Available Scripts
+## Installation
 
+The easiest way to use our React tools is to install it via NPM.
 
-### `yarn start`
+`npm install react-concierge-sms`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Provided React components
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The packaged components are:
 
-### `yarn test`
+- `conciergeSmsOptIn`
+- `conciergeBackinStockForm`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Usage:
 
-### `yarn build`
+```react
+import React, { useRef } from 'react';
+import {ConciergeBackinStockForm, ConciergeSmsOptIn} from 'react-concierge-sms'
+... 
 
-Build npm package @ dist
+<ConciergeBackinStockForm
+        options={{
+          pk: PK,
+          mode: 'dev',
+          product_no: "999999",
+          variant_no: "899988",
+          link: 'https://yourstore.com/the-product',
+          product_title: 'The Product',
+          platform: 'klaviyo',
+          shopify_domain: 'succulentcity.myshopify.com',
+          variant_title: 'Blue'
+        }}
+        configuration={{
+          orgName: 'Great Company',
+          smsInsiders: true,
+          formContainerStyle: {textAlign: 'center'},
+        }}
+      />
+
+<ConciergeSmsOptIn
+options={{ pk: PK, mode: 'dev'}}
+configuration={{ orgName: 'Great Company' }}
+/>
+
+```
+
+### Documentation
+
+**Find the full documentation at**
+
+https://concierge-js-bundle.web.app/
+
