@@ -72,6 +72,8 @@ function ConciergeSmsOptIn({options, configuration}) {
           label={null}
           value={value}
           disableDropdown={true}
+          disableCountryCode={true}
+          defaultCountry='us'
           disableSearchIcon={true}
           enableSearchField={false}
           inputExtraProps={{

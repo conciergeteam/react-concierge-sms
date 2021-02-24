@@ -60,13 +60,12 @@ function ConciergeBackinStockForm({options, configuration}) {
     return text.replace("{{org_name}}", CONFIG.orgName)
   }
 
-  const smsInsiders = () => {
+  const smsMarketingInvitation = () => {
     return (
       <div>
         <input type="checkbox" value={acceptMarketing} name="accept_sms_marketing" onClick={onAcceptMarketingChange}/>
-        <label style={CONFIG.smsInsidersLabelStyle}>{replaceTag(CONFIG.smsInsidersLabel)}</label>
-        <p className="concierge-sms-insiders-text" style={CONFIG.smsInsidersStyle}> {replaceTag(CONFIG.smsInsidersText)} </p>
-        <p style={CONFIG.smsLegalNoticeStyle}>{CONFIG.smsLegalNotice}</p>
+        <label style={CONFIG.smsLegalNoticeStyle}>{replaceTag(CONFIG.smsMarketingInvitationLabel)}</label>
+        <p className="concierge-sms-mi-text" style={CONFIG.smsLegalNoticeStyle}> {replaceTag(CONFIG.smsLegalNotice)} </p>
       </div>
     )
   }
@@ -88,9 +87,9 @@ function ConciergeBackinStockForm({options, configuration}) {
         <PhoneInput
           label={null}
           value={value}
-          disableDropdown={true}
+          disableCountryCode={true}
+          defaultCountry='us'
           disableSearchIcon={true}
-          enableSearchField={false}
           inputExtraProps={{
             name: "phone",
             required: true,
@@ -102,7 +101,7 @@ function ConciergeBackinStockForm({options, configuration}) {
           onlyCountries={PHONE_COUNTRIES}
         />
         {submitButton()}
-        {CONFIG.smsInsiders && smsInsiders()}
+        {CONFIG.showSmsMarketingInvitation && smsMarketingInvitation()}
       </form>
     </div>
   )

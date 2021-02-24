@@ -15,7 +15,7 @@ const DEFAULT_ORG_NAME = "{{WARNING: add your org name via config.orgName}}"
 
 //PHONE INPUT
 const PHONE_COUNTRIES = ['us']
-const PHONE_NUMBER_LENGTH = 11
+const PHONE_NUMBER_LENGTH = 10
 const PHONE_DEFAULT_PLACEHOLDER = "Enter Phone Number"
 
 const SMS_OPT_IN_DEFAULT_CONFIG = {
@@ -37,24 +37,23 @@ const SMS_OPT_IN_DEFAULT_CONFIG = {
   onError: (error) => {console.error(error)},
 }
 
-const  BIS_FORM_DEFAULT_CONFIG = {
+const BIS_FORM_DEFAULT_CONFIG = {
   orgName: DEFAULT_ORG_NAME,
   header: "Don't miss your chance",
   successText: "Thank you. We'll send you a message when this item is back in stock.",
   subheader: "These items are extremely limited and tend to go fast.",
   phonePlaceholder: 'Enter your phone number',
   buttonText: 'Get text notification',
-  smsInsiders: true,
-  smsInsidersLabel: 'Also add me to the {{org_name}} Insiders SMS',
-  smsInsidersLabelStyle: {fontSize: "1rem"},
   formContainerStyle: {textAlign: 'center', fontFamily: 'Helvetica'},
   buttonStyle: {padding: '10px', width: '60%'},
   buttonDisabledStyle: {opacity: 0.7, padding: '10px', width: '60%', cursor: 'not-allowed'},
   headerStyle: {fontSize: "2rem"},
   subheaderStyle: {fontSize: "1.2rem"},
   phoneInputStyle: {padding: '10px', width: '60%'},
-  smsInsidersStyle: {fontSize: "0.8rem"},
-  smsInsidersText: `By providing your phone number, you agree to receive recurring automated marketing text messages from {{org_name}}. Frequency varies by account. Consent is not a condition of purchase. Carrier message and data rates may apply.`,
+  showSmsMarketingInvitation: true,
+  smsMarketingInvitationLabel: 'Also add me to the {{org_name}} SMS List',
+  smsLegalNoticeStyle: {fontSize: "0.8rem"},
+  smsLegalNotice: `By providing your phone number, you agree to receive recurring automated marketing text messages from {{org_name}}. Frequency varies by account. Consent is not a condition of purchase. Carrier message and data rates may apply.`,
   onSuccess: () => {},
   onError: (error) => {console.error(error)},
 }

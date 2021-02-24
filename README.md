@@ -17,15 +17,14 @@ The packaged components are:
 
 Usage:
 
-```react
-import React, { useRef } from 'react';
-import {ConciergeBackinStockForm, ConciergeSmsOptIn} from 'react-concierge-sms'
+```javascript
+import React from 'react';
+import { ConciergeBackinStockForm, ConciergeSmsOptIn } from 'react-concierge-sms'
 ... 
 
 <ConciergeBackinStockForm
         options={{
           pk: PK,
-          mode: 'dev',
           product_no: "999999",
           variant_no: "899988",
           link: 'https://yourstore.com/the-product',
@@ -36,21 +35,18 @@ import {ConciergeBackinStockForm, ConciergeSmsOptIn} from 'react-concierge-sms'
         }}
         configuration={{
           orgName: 'Great Company',
-          smsInsiders: true,
           formContainerStyle: {textAlign: 'center'},
         }}
       />
 
 <ConciergeSmsOptIn
-options={{ pk: PK, mode: 'dev'}}
-configuration={{ orgName: 'Great Company' }}
+   options={{ pk: PK, mode: 'test'}}
+   configuration={{ orgName: 'Great Company' }}
 />
 
 ```
 
 ### Documentation
 
-**Find the full documentation at**
-
-https://concierge-js-bundle.web.app/
+Documentation: https://js.conciergeteam.co
 
