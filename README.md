@@ -1,6 +1,6 @@
 # react-concierge-sms
 
-React ready components for the great concierge SMS tools.
+React-ready components for sending SMS via Concierge.
 
 ## Installation
 
