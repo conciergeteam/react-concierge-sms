@@ -2,13 +2,13 @@
 const SMS_OPT_IN_URLS = {
   dev: "http://localhost:3000/sms_opt_in",
   test: "https://staging.conciergeteam.co/sms_opt_in",
-  prod: "https://conciergeteam.co/sms_opt_in",
+  prod: "https://app.conciergeteam.co/sms_opt_in",
 }
 
 const BIS_URLS = {
   dev: "http://localhost:3000/sms_backinstock",
   test: "https://staging.conciergeteam.co/sms_backinstock",
-  prod: "https://conciergeteam.co/sms_backinstock",
+  prod: "https://app.conciergeteam.co/sms_backinstock",
 }
 
 const DEFAULT_ORG_NAME = "{{WARNING: add your org name via config.orgName}}"
